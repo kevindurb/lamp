@@ -57,22 +57,35 @@ module internal() {
     h=height - inches(1.5),
     anchor = CENTER+BOTTOM
   ) {
+    down(10)
+    position(BOTTOM)
+    color_this(core_color)
+    tag("remove")
+    prismoid(
+      size1=[width - inches(0.75), width - inches(0.75)],
+      size2=[width - inches(1.25), width - inches(1.25)],
+      h=height - inches(1.75),
+      anchor = CENTER+BOTTOM
+    );
+
     // LED Strips
     for (side = [FRONT, BACK, LEFT, RIGHT])
       attach(side, BACK)
       xcopies(n = 3, l = 30)
       led_strip(3);
 
+    // Wire Holes
     for (side = [FRONT, BACK])
-      tag("remove")
       position(BOTTOM + side)
       color_this(core_color)
+      tag("remove")
       cube([inches(2), 5, 5], anchor = CENTER);
 
+    // Wire Holes
     for (side = [LEFT, RIGHT])
-      tag("remove")
       position(BOTTOM + side)
       color_this(core_color)
+      tag("remove")
       cube([inches(2), 5, 5], anchor = CENTER, spin = 90);
   }
 }
@@ -106,4 +119,4 @@ module led_strip(length = 1) {
 }
 
 internal();
-up(inches(0.5)) cover();
+*up(inches(0.5)) cover();
