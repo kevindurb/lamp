@@ -3,7 +3,7 @@ include <./lib/convert.scad>
 
 height = inches(13.5);
 width = inches(3);
-wall_thickness = 0.4;
+wall_thickness = 0.6;
 
 led_strip_width = 10;
 led_strip_height = 2.5;
@@ -11,15 +11,18 @@ led_strip_segment_length = 100;
 
 module cover() {
   color("#ffffffaa")
-  cube([width, width, height], anchor = CENTER + BOTTOM);
+  cube([width, width, height - inches(0.5)], anchor = CENTER + BOTTOM);
 }
 
 module internal() {
   color_this("black")
+  cube([width, width, inches(0.5)], anchor = CENTER + BOTTOM)
+  attach(TOP, BOTTOM)
+  color_this("black")
   cube([
     width - (wall_thickness * 2),
     width - (wall_thickness * 2),
-    inches(1)
+    inches(0.5)
   ], anchor = CENTER + BOTTOM) {
     attach(TOP, BOTTOM)
     color_this("black")
@@ -56,4 +59,4 @@ module led_strip(length = 0, anchor = CENTER, spin = 0, orient = UP) {
 }
 
 internal();
-cover();
+up(inches(0.5)) cover();
