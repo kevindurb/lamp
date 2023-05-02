@@ -119,4 +119,4 @@ module led_strip(length = 1) {
 }
 
 internal();
-*up(inches(0.5)) cover();
+up(inches(0.5)) cover();
